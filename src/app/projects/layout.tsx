@@ -1,28 +1,25 @@
-import React from "react";
+"use client";
+
+import { useState } from "react";
+import { getAllCases } from "@/lib/markdown";
+import CaseCard from "@/components/ui/caseCard";
 
 const Layout = ({ children }) => {
+  const [cases, setCases] = useState([]);
+  const fetchCases = async () => {
+    const allCases = await getAllCases();
+    setCases(allCases);
+  };
+  fetchCases();
+
   return (
     <div style={styles.container}>
-      <header style={styles.header}>
-        <nav style={styles.nav}>
-          <ul style={styles.navList}>
-            <li style={styles.navItem}>
-              <a href="#home">Home</a>
-            </li>
-            <li style={styles.navItem}>
-              <a href="#about">About</a>
-            </li>
-            <li style={styles.navItem}>
-              <a href="#services">Services</a>
-            </li>
-            <li style={styles.navItem}>
-              <a href="#contact">Contact</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-
-      <main style={styles.mainContent}>{children}</main>
+      <main style={styles.mainContent}>
+        {children}
+        {cases.map((caseData, index) => (
+          <CaseCard key={index} {...caseData} />
+        ))}
+      </main>
 
       <footer style={styles.footer}>
         <p>© 2024 Your Company. All rights reserved.</p>

@@ -1,10 +1,5 @@
-import Feature11 from "@/components/section/feature";
-const ProjectPage = () => {
-  return (
-    <>
-      <Feature11 />
-    </>
-  );
+const ProjectsPage = () => {
+  return <></>;
 };
 
-export default ProjectPage;
+export default ProjectsPage;
